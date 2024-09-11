@@ -36,6 +36,8 @@ out/
 ### VS Code ###
 .vscode/
 
+### Postgresql Data files
+client/AI/data
 
 application-private.yaml
 docker-compose
