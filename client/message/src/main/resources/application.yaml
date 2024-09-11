@@ -1,0 +1,21 @@
+spring:
+    profiles:
+        include: private
+    application:
+        name: message
+
+server:
+    port: 19092
+
+jpa:
+    hibernate:
+        ddl-auto: update
+    properties:
+        hibernate:
+            format_sql: true
+        show-sql: true
+
+eureka:
+    client:
+        service-url:
+            defaultZone: http://localhost:19090/eureka/
