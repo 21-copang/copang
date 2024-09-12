@@ -55,4 +55,31 @@ class SlackLogControllerTest {
                 .andExpect(jsonPath("result.resultMessage").value("Success"));
     }
 
+    @Test
+    @DisplayName("슬랙 메시지 전송 싱패 테스트 - 불가능한 이메일 형식")
+    public void createSlackMessageTest2() throws Exception {
+        // Given
+        String content = "{\"recipientEmail\":\"mii2026\",\"message\":\"test\"}";
+
+        // Then
+        mockMvc.perform(post("/api/slacks")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(content))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DisplayName("슬랙 메시지 전송 싱패 테스트 - 불가능한 메시지")
+    public void createSlackMessageTest3() throws Exception {
+        // Given
+        String content = "{\"recipientEmail\":\"mii2026@naver.com\",\"message\":\" \"}";
+        // Then
+        mockMvc.perform(post("/api/slacks")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(content))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+    }
+
 }

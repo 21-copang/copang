@@ -23,4 +23,10 @@ public class CommonResponse<T>{
         response.result = Result.statusCode(statusCode);
         return response;
     }
+
+    public static CommonResponse<Object> VALID_ERROR(String message) {
+        var response = new CommonResponse<Object>();
+        response.result = Result.ofValidMessage(message);
+        return response;
+    }
 }
