@@ -50,7 +50,7 @@ public class SlackService {
         try {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
             if (objectMapper.readTree(response.getBody()).path("ok").asText().equals("false")) {
-                throw new ApplicationException(SlackStatusCode.SEND_SLACK_MESSAGE_ERROR);
+                throw new ApplicationException(SlackStatusCode.GET_USERID_ERROR);
             }
             return objectMapper.readTree(response.getBody()).path("user").path("id").asText();
         } catch (RestClientException | JsonProcessingException e) {

@@ -19,16 +19,16 @@ import java.util.List;
 public class CustomPreAuthFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String username = request.getHeader("X-Username");
-        String roles = request.getHeader("X-Roles");
+        String userId = request.getHeader("X-User-Id");
+        String roles = request.getHeader("X-User-Role");
 
-        if(username != null && roles != null) {
+        if(userId != null && roles != null) {
             List<SimpleGrantedAuthority> authorities = Arrays.stream(roles.split(","))
                     .map(role -> new SimpleGrantedAuthority(role.trim()))
                     .toList();
 
             UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(username, null, authorities);
+                    new UsernamePasswordAuthenticationToken(userId, null, authorities);
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } else {
