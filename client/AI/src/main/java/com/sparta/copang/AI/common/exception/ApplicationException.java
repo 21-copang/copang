@@ -1,6 +1,6 @@
-package com.sparta.copang.AI.infrastructure.exception;
+package com.sparta.copang.AI.common.exception;
 
-import com.sparta.copang.AI.infrastructure.response.status.StatusCode;
+import com.sparta.copang.AI.presentation.response.status.StatusCode;
 import lombok.Getter;
 
 @Getter

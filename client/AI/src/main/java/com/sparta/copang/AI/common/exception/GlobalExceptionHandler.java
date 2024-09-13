@@ -1,7 +1,7 @@
-package com.sparta.copang.AI.infrastructure.exception;
+package com.sparta.copang.AI.common.exception;
 
-import com.sparta.copang.AI.infrastructure.response.CommonResponse;
-import com.sparta.copang.AI.infrastructure.response.status.StatusCode;
+import com.sparta.copang.AI.presentation.response.CommonResponse;
+import com.sparta.copang.AI.presentation.response.status.StatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

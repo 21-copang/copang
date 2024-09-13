@@ -1,4 +1,4 @@
-package com.sparta.copang.AI.infrastructure.response.status;
+package com.sparta.copang.AI.presentation.response.status;
 
 public interface StatusCode {
     Integer getHttpStatusCode();
