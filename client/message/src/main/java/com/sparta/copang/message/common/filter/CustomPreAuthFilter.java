@@ -1,4 +1,4 @@
-package com.sparta.copang.message.infrastructure.security;
+package com.sparta.copang.message.common.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

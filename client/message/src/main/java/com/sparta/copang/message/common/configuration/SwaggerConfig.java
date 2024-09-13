@@ -1,4 +1,4 @@
-package com.sparta.copang.message.infrastructure.configuration;
+package com.sparta.copang.message.common.configuration;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

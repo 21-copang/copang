@@ -1,7 +1,7 @@
-package com.sparta.copang.message.infrastructure.response;
+package com.sparta.copang.message.presentation.controller.response;
 
-import com.sparta.copang.message.infrastructure.response.status.CommonStatusCode;
-import com.sparta.copang.message.infrastructure.response.status.StatusCode;
+import com.sparta.copang.message.presentation.controller.response.status.CommonStatusCode;
+import com.sparta.copang.message.presentation.controller.response.status.StatusCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

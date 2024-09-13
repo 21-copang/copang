@@ -1,5 +1,6 @@
-package com.sparta.copang.message.infrastructure.security;
+package com.sparta.copang.message.common.configuration;
 
+import com.sparta.copang.message.common.filter.CustomPreAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

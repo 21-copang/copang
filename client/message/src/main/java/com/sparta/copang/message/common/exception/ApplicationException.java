@@ -1,6 +1,6 @@
-package com.sparta.copang.message.infrastructure.exception;
+package com.sparta.copang.message.common.exception;
 
-import com.sparta.copang.message.infrastructure.response.status.StatusCode;
+import com.sparta.copang.message.presentation.controller.response.status.StatusCode;
 import lombok.Getter;
 
 @Getter

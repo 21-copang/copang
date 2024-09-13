@@ -1,4 +1,4 @@
-package com.sparta.copang.message.infrastructure.response.status;
+package com.sparta.copang.message.presentation.controller.response.status;
 
 public interface StatusCode {
     Integer getHttpStatusCode();
