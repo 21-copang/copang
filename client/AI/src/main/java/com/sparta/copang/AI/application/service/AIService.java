@@ -3,7 +3,7 @@ package com.sparta.copang.AI.application.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.copang.AI.domain.model.AI;
-import com.sparta.copang.AI.infrastructure.repository.AIJpaRepository;
+import com.sparta.copang.AI.domain.repository.AIRepository;
 import com.sparta.copang.AI.infrastructure.restTemplate.GeminiAPI;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,8 +18,9 @@ public class AIService {
 
 
 
-    private final AIJpaRepository aiRepository;
+    private final AIRepository aiRepository;
     private final GeminiAPI geminiService;
+
 
 
     public String requestPrompt(String prompt) {
