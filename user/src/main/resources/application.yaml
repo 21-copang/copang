@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: USER-SERVICE
+  profiles:
+    active: private
+
+server:
+  port: 19092  # Gateway가 사용하는 포트
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:19090/eureka/  # Eureka 서버 주소
