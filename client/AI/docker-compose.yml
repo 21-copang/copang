@@ -2,7 +2,7 @@ services:
   postgresql:
     image: postgres
     restart: always
-    container_name: postgres
+    container_name: postgres-AI
     ports:
       - "5440:5432"
     environment:
