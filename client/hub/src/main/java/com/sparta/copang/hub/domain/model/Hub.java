@@ -2,10 +2,7 @@ package com.sparta.copang.hub.domain.model;
 
 import com.sparta.copang.hub.common.Entity.Audit;
 import com.sparta.copang.hub.presentation.dtos.HubReq;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
@@ -16,6 +13,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "p_hubs")
 public class Hub extends Audit {
 
     @Id
