@@ -1,23 +1,22 @@
 package com.sparta.copang.hub.domain.model;
 
+import com.sparta.copang.hub.common.Entity.Audit;
 import com.sparta.copang.hub.presentation.dtos.HubReq;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
+@EqualsAndHashCode(callSuper = false)
 @Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Hub {
+public class Hub extends Audit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
