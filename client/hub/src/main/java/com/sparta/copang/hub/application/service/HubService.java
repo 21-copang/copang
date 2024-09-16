@@ -32,4 +32,9 @@ public class HubService {
 
         return HubDto.of(hub);
     }
+
+    public HubDto getHub(UUID hubId) {
+        Hub hub = hubRepository.findById(hubId).orElseThrow(() -> new RuntimeException("Hub not found"));
+        return HubDto.of(hub);
+    }
 }

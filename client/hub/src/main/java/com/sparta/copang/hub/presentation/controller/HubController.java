@@ -26,4 +26,9 @@ public class HubController {
     public ResponseEntity<CommonResponse<HubDto>> updateHub(@PathVariable UUID hubId, @RequestBody HubReq req) {
         return ResponseEntity.ok(CommonResponse.OK(hubService.updateHub(hubId, req)));
     }
+
+    @GetMapping("/{hubId}")
+    public ResponseEntity<CommonResponse<HubDto>> getHub(@PathVariable UUID hubId) {
+        return ResponseEntity.ok(CommonResponse.OK(hubService.getHub(hubId)));
+    }
 }
