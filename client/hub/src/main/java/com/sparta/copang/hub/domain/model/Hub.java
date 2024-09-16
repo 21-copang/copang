@@ -4,9 +4,11 @@ import com.sparta.copang.hub.common.Entity.Audit;
 import com.sparta.copang.hub.presentation.dtos.HubReq;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Where;
 
 import java.util.UUID;
 
+@Where(clause = "deleted_at is null")
 @EqualsAndHashCode(callSuper = false)
 @Entity
 @Data

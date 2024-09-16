@@ -7,6 +7,7 @@ import com.sparta.copang.hub.presentation.dtos.HubReq;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
@@ -35,6 +36,14 @@ public class HubService {
 
     public HubDto getHub(UUID hubId) {
         Hub hub = hubRepository.findById(hubId).orElseThrow(() -> new RuntimeException("Hub not found"));
+        return HubDto.of(hub);
+    }
+
+    public HubDto deleteHub(UUID hubId) {
+        Hub hub = hubRepository.findById(hubId).orElseThrow(() -> new RuntimeException("Hub not found"));
+        hub.setDeleted_at(LocalDateTime.now());
+
+        hubRepository.save(hub);
         return HubDto.of(hub);
     }
 }
