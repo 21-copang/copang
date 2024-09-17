@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -45,5 +47,14 @@ public class HubService {
 
         hubRepository.save(hub);
         return HubDto.of(hub);
+    }
+
+    public List<HubDto> searchHub(String hub_name) {
+        List<Hub> hubs = hubRepository.searchHub(hub_name);
+        List<HubDto> hubDtos = new ArrayList<>();
+        for (Hub hub : hubs) {
+            hubDtos.add(HubDto.of(hub));
+        }
+        return hubDtos;
     }
 }

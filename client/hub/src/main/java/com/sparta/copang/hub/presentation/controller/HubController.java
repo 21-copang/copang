@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -35,5 +36,10 @@ public class HubController {
     @DeleteMapping("/{hubId}")
     public ResponseEntity<CommonResponse<HubDto>> deleteHub(@PathVariable UUID hubId) {
         return ResponseEntity.ok(CommonResponse.OK(hubService.deleteHub(hubId)));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<CommonResponse<List<HubDto>>> searchHub(@RequestParam String hub_name) {
+        return ResponseEntity.ok(CommonResponse.OK(hubService.searchHub(hub_name)));
     }
 }
