@@ -3,7 +3,7 @@ services:
     image: postgres:15.8
     restart: always
     volumes:
-      - ./db/balloon_local:/var/lib/postgresql/data
+      - db_user:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     environment:
@@ -15,9 +15,12 @@ services:
     image: redis:7.0
     restart: always
     volumes:
-      - ./db/balloon_local:/var/lib/redis/data
+      - ./db/redis_data:/var/lib/redis/data
     ports:
       - "6379:6379"
     environment:
       REDIS_USER: default
       REDIS_PASSWORD: default
+
+volumes:
+  db_user:
