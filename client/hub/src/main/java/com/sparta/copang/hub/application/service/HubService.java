@@ -5,6 +5,7 @@ import com.sparta.copang.hub.domain.model.Hub;
 import com.sparta.copang.hub.domain.repository.HubRepository;
 import com.sparta.copang.hub.presentation.dtos.HubReq;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -36,6 +37,7 @@ public class HubService {
         return HubDto.of(hub);
     }
 
+    @Cacheable(cacheNames = "Hub", key = "args[0]")
     public HubDto getHub(UUID hubId) {
         Hub hub = hubRepository.findById(hubId).orElseThrow(() -> new RuntimeException("Hub not found"));
         return HubDto.of(hub);
