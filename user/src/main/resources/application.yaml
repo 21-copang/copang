@@ -1,13 +1,23 @@
 spring:
   application:
     name: USER-SERVICE
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
   profiles:
     active: private
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres  # Docker Compose에서 정의한 서비스 이름 'postgres'
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
 
 server:
-  port: 19092  # Gateway가 사용하는 포트
+  port: 19092
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:19090/eureka/  # Eureka 서버 주소
+      defaultZone: http://localhost:19090/eureka/
