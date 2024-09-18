@@ -36,6 +36,9 @@ out/
 ### VS Code ###
 .vscode/
 
-
 application-private.yaml
 docker-compose
+
+# SQLite database files
+*.db
+*.sqlite3
