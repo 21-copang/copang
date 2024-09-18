@@ -26,6 +26,5 @@ public class UserSignupRequest {
 //    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[@!$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).+$", message = "password는 알파벳 대소문자(a~z, A~Z), 숫자(0~9), 특수문자를 포함해야 합니다.")
     private String password;
     private Role role;
-    private String adminToken = "";
 
 }

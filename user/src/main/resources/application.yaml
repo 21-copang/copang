@@ -9,7 +9,7 @@ spring:
   profiles:
     active: private
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres  # Docker Compose에서 정의한 서비스 이름 'postgres'
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
