@@ -3,17 +3,16 @@ spring:
         include: private
     application:
         name: message
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
+        properties:
+            hibernate:
+                format_sql: true
 
 server:
-    port: 19092
-
-jpa:
-    hibernate:
-        ddl-auto: update
-    properties:
-        hibernate:
-            format_sql: true
-        show-sql: true
+    port: 19099
 
 eureka:
     client:

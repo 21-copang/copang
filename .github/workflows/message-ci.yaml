@@ -9,7 +9,7 @@ on:
 
 defaults:
   run:
-    working-directory: ./client/message
+    working-directory: client/message
 
 permissions:
   checks: write
@@ -30,11 +30,14 @@ jobs:
       - name: Gradle Permission
         run: chmod +x ./gradlew
 
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@v3
+      - name: Run build in a subdirectory
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          build-root-directory: client/message
+          arguments: 'build'
 
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
-          junit_files: '**/build/test-results/test/TEST-*.xml'
+          junit_files: 'client/message/build/test-results/test/TEST-*.xml'
