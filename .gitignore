@@ -41,3 +41,8 @@ client/AI/data/postgres/
 
 application-private.yaml
 docker-compose
+
+# SQLite database files
+*.db
+*.sqlite3
+/user/db/
