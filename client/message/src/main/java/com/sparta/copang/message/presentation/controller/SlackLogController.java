@@ -2,7 +2,7 @@ package com.sparta.copang.message.presentation.controller;
 
 import com.sparta.copang.message.application.dto.CreateSlackLogReq;
 import com.sparta.copang.message.application.service.SlackLogService;
-import com.sparta.copang.message.infrastructure.response.CommonResponse;
+import com.sparta.copang.message.presentation.controller.response.CommonResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

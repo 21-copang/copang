@@ -1,15 +1,12 @@
-package com.sparta.copang.message.infrastructure.response;
+package com.sparta.copang.message.presentation.controller.response;
 
-import com.sparta.copang.message.infrastructure.response.status.CommonStatusCode;
-import com.sparta.copang.message.infrastructure.response.status.StatusCode;
+import com.sparta.copang.message.common.status.CommonStatusCode;
+import com.sparta.copang.message.common.status.StatusCode;
+import lombok.AccessLevel;
 import lombok.Builder;
-import lombok.Getter;
 
-@Getter
-@Builder
-public class Result {
-    private Integer resultCode;
-    private String resultMessage;
+@Builder(access = AccessLevel.PRIVATE)
+public record Result (Integer resultCode, String resultMessage) {
 
     public static Result statusCode(StatusCode statusCode){
         return Result.builder()

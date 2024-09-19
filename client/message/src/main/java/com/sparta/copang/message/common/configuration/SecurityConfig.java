@@ -1,5 +1,6 @@
-package com.sparta.copang.message.infrastructure.security;
+package com.sparta.copang.message.common.configuration;
 
+import com.sparta.copang.message.common.filter.CustomPreAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,8 +38,9 @@ public class SecurityConfig {
                 UsernamePasswordAuthenticationFilter.class
         );
 
-        http.authorizeHttpRequests((authorizeHttpRequests) ->
-                authorizeHttpRequests.anyRequest().authenticated()
+        http.authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
+                .requestMatchers("/swagger-ui/**", "/swagger-resources/**", "/v3/api-docs/**").permitAll()
+                .anyRequest().authenticated()
         );
 
         return http.build();
