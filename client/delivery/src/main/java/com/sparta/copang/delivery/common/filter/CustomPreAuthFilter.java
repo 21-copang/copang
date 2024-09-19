@@ -1,5 +1,7 @@
 package com.sparta.copang.delivery.common.filter;
 
+import com.sparta.copang.delivery.common.exception.ApplicationException;
+import com.sparta.copang.delivery.presentation.response.status.CommonStatusCode;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -23,25 +24,13 @@ public class CustomPreAuthFilter extends OncePerRequestFilter {
         String roles = request.getHeader("X-User-Role");
 
         if(userId != null && roles != null) {
-            List<SimpleGrantedAuthority> authorities = Arrays.stream(roles.split(","))
-                    .map(role -> new SimpleGrantedAuthority(role.trim()))
-                    .toList();
+            List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_" + roles));
 
             UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(userId, null, authorities);
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
-        } else {
-            UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(
-                            null,
-                            null,
-                            AuthorityUtils.NO_AUTHORITIES
-                    );
-
-            SecurityContextHolder.getContext().setAuthentication(authentication);
         }
-
         filterChain.doFilter(request, response);
     }
 }
