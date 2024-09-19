@@ -38,8 +38,9 @@ public class SecurityConfig {
                 UsernamePasswordAuthenticationFilter.class
         );
 
-        http.authorizeHttpRequests((authorizeHttpRequests) ->
-                authorizeHttpRequests.anyRequest().authenticated()
+        http.authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
+                .requestMatchers("/swagger-ui/**", "/swagger-resources/**", "/v3/api-docs/**").permitAll()
+                .anyRequest().authenticated()
         );
 
         return http.build();
