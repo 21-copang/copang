@@ -25,15 +25,20 @@ public class Path {
     private LocalTime duration;
     private float distance;
 
-    private UUID start_hub_id;
-    private UUID end_hub_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "start_hub_id", nullable = false)
+    private Hub startHub;
 
-    public static Path createPath(PathReq req) {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "end_hub_id", nullable = false)
+    private Hub endHub;
+
+    public static Path createPath(PathReq req, Hub start_hub, Hub end_hub) {
         return Path.builder()
                 .duration(req.duration())
                 .distance(req.distance())
-                .start_hub_id(req.start_hub_id())
-                .end_hub_id(req.end_hub_id())
+                .startHub(start_hub)
+                .endHub(end_hub)
                 .build();
     }
 }

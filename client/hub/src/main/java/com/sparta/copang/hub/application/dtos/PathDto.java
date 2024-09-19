@@ -20,8 +20,8 @@ public record PathDto (
                 .path_id(path.getPath_id())
                 .duration(path.getDuration())
                 .distance(path.getDistance())
-                .start_hub_id(path.getStart_hub_id())
-                .end_hub_id(path.getEnd_hub_id())
+                .start_hub_id(path.getStartHub().getHub_id())
+                .end_hub_id(path.getEndHub().getHub_id())
                 .build();
     }
 }

@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Where(clause = "deleted_at is null")
@@ -26,6 +28,12 @@ public class Hub extends Audit {
     private float latitude;
     private float longitude;
     private String hub_address;
+
+    @OneToMany(mappedBy = "startHub", cascade = CascadeType.ALL)
+    private List<Path> startPaths = new ArrayList<>();
+
+    @OneToMany(mappedBy = "endHub", cascade = CascadeType.ALL)
+    private List<Path> endPaths = new ArrayList<>();
 
 
     // FK (user_id)
