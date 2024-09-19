@@ -1,6 +1,7 @@
 package com.sparta.copang.hub.common.configuration;
 
 import com.sparta.copang.hub.domain.model.Hub;
+import com.sparta.copang.hub.domain.model.Path;
 import com.sparta.copang.hub.domain.repository.HubRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -38,6 +39,50 @@ public class HubInitializer {
         saveHub(hub1, hub2, hub3, hub4, hub5, hub6, hub7, hub8);
         saveHub(hub9, hub10, hub11, hub12, hub13, hub14, hub15, hub16);
         hubRepository.save(hub17);
+
+        Path path1 = Path.builder().duration(1).distance(1).startHub(hub1).endHub(hub2).build();
+        Path path2 = Path.builder().duration(1).distance(1).startHub(hub2).endHub(hub3).build();
+        Path path3 = Path.builder().duration(1).distance(1).startHub(hub3).endHub(hub4).build();
+        Path path4 = Path.builder().duration(1).distance(1).startHub(hub4).endHub(hub5).build();
+        Path path5 = Path.builder().duration(1).distance(1).startHub(hub5).endHub(hub6).build();
+        Path path6 = Path.builder().duration(1).distance(1).startHub(hub6).endHub(hub7).build();
+        Path path7 = Path.builder().duration(1).distance(1).startHub(hub7).endHub(hub8).build();
+        Path path8 = Path.builder().duration(1).distance(1).startHub(hub8).endHub(hub9).build();
+        Path path9 = Path.builder().duration(1).distance(1).startHub(hub9).endHub(hub10).build();
+        Path path10 = Path.builder().duration(1).distance(1).startHub(hub10).endHub(hub11).build();
+        Path path11 = Path.builder().duration(1).distance(1).startHub(hub11).endHub(hub12).build();
+        Path path12 = Path.builder().duration(1).distance(1).startHub(hub12).endHub(hub13).build();
+        Path path13 = Path.builder().duration(1).distance(1).startHub(hub13).endHub(hub14).build();
+        Path path14 = Path.builder().duration(1).distance(1).startHub(hub14).endHub(hub15).build();
+        Path path15 = Path.builder().duration(1).distance(1).startHub(hub15).endHub(hub16).build();
+        Path path16 = Path.builder().duration(1).distance(1).startHub(hub16).endHub(hub17).build();
+
+        savePath(hub1, hub2, path1);
+        savePath(hub2, hub3, path2);
+        savePath(hub3, hub4, path3);
+        savePath(hub4, hub5, path4);
+        savePath(hub5, hub6, path5);
+        savePath(hub6, hub7, path6);
+        savePath(hub7, hub8, path7);
+        savePath(hub8, hub9, path8);
+        savePath(hub9, hub10, path9);
+        savePath(hub10, hub11, path10);
+        savePath(hub11, hub12, path11);
+        savePath(hub12, hub13, path12);
+        savePath(hub13, hub14, path13);
+        savePath(hub14, hub15, path14);
+        savePath(hub15, hub16, path15);
+        savePath(hub16, hub17, path16);
+
+
+    }
+
+    private void savePath(Hub startHub, Hub endHub, Path path) {
+        startHub.getStartPaths().add(path);
+        endHub.getStartPaths().add(path);
+
+        hubRepository.save(startHub);
+        hubRepository.save(endHub);
     }
 
     private void saveHub(Hub hub9, Hub hub10, Hub hub11, Hub hub12, Hub hub13, Hub hub14, Hub hub15, Hub hub16) {
