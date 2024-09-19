@@ -49,6 +49,14 @@ public class Hub extends Audit {
     // FK (user_id)
     private UUID hub_manager;
 
+    public Hub(String hub_name, float latitude, float longitude, String hub_address, int sequence) {
+        this.hub_name = hub_name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.hub_address = hub_address;
+        this.sequence = sequence;
+    }
+
     public static Hub createHub(HubReq req) {
         return Hub.builder()
                 .hub_name(req.hub_name())
