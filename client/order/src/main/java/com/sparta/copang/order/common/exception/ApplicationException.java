@@ -1,6 +1,6 @@
 package com.sparta.copang.order.common.exception;
 
-import com.sparta.copang.order.presentation.response.status.StatusCode;
+import com.sparta.copang.order.common.status.StatusCode;
 import lombok.Getter;
 
 @Getter

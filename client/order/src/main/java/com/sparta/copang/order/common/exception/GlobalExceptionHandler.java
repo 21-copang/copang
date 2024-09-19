@@ -1,8 +1,8 @@
 package com.sparta.copang.order.common.exception;
 
 import com.sparta.copang.order.presentation.response.CommonResponse;
-import com.sparta.copang.order.presentation.response.status.CommonStatusCode;
-import com.sparta.copang.order.presentation.response.status.StatusCode;
+import com.sparta.copang.order.common.status.CommonStatusCode;
+import com.sparta.copang.order.common.status.StatusCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
