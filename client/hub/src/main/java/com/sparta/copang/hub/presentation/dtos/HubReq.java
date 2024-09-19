@@ -7,5 +7,6 @@ public record HubReq (
         float latitude,
         float longitude,
         String hub_address,
+        int sequence,
         UUID manager_user_id){
 }
