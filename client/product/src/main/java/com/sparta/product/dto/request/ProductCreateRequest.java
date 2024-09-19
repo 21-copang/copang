@@ -4,6 +4,6 @@ import java.util.UUID;
 
 public record ProductCreateRequest(
         String productName,
-        UUID orderProductsId,
+        UUID companyId,
         UUID hubId
 ) {}

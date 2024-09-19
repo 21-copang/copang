@@ -1,9 +1,9 @@
 spring:
   application:
-    name: AI
+    name: AI-SERVICE
 
   datasource:
-    url: jdbc:postgresql://localhost:5440/postgres
+    url: jdbc:postgresql://localhost:5438/postgres
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver

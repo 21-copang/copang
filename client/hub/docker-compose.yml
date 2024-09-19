@@ -1,15 +1,18 @@
+version: '3.8'
+
 services:
-  postgresql:
-    image: postgres
+  postgres:
+    image: postgres:15.8
     restart: always
-    container_name: postgres-hub
+    volumes:
+      - db_hub:/var/lib/postgresql/data
     ports:
-      - "5434:5432"
+      - "5433:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-    volumes:
-      - ./data/postgres/:/var/lib/postgresql/data
+      POSTGRES_DB: postgres
+
   redis-stack:
     image: redis/redis-stack
     container_name: redis-stack-compose
@@ -19,3 +22,7 @@ services:
     ports:
       - 6379:6379
       - 8001:8001
+
+volumes:
+  db_hub:
+

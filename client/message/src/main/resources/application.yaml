@@ -2,7 +2,7 @@ spring:
     profiles:
         include: private
     application:
-        name: message
+        name: MESSAGE-SERVICE
     jpa:
         hibernate:
             ddl-auto: update
@@ -10,6 +10,11 @@ spring:
         properties:
             hibernate:
                 format_sql: true
+    datasource:
+        url: jdbc:postgresql://localhost:5439/postgres
+        username: postgres
+        password: postgres
+        driver-class-name: org.postgresql.Driver
 
 server:
     port: 19099

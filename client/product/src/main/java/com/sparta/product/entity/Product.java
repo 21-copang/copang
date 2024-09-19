@@ -20,13 +20,13 @@ public class Product extends BaseEntity {
     @GeneratedValue
     private UUID productId;
     private String productName;
-    private UUID orderProductsId;
+    private UUID companyId;
     private UUID hubId;
 
-    public Product(String productName, UUID orderProductsId, UUID hubId) {
+    public Product(String productName, UUID companyId, UUID hubId) {
         this.productId = UUID.randomUUID();
         this.productName = productName;
-        this.orderProductsId = orderProductsId;
+        this.companyId = companyId;
         this.hubId = hubId;
     }
 }

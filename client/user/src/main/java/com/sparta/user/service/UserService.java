@@ -62,14 +62,14 @@ public class UserService {
     public UserResponse getUser(UUID targetUserId) {
         User user = userRepository.findById(targetUserId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다."));
-        return new UserResponse(user.getUsername(), user.getEmail(), user.getRole());
+        return new UserResponse(user.getId(), user.getUsername(), user.getEmail(), user.getRole());
     }
 
     // 모든 사용자 조회
     public Page<UserResponse> getAllUsers(UUID userId, Pageable pageable) {
         Page<User> usersPage = userRepository.findAll(pageable);
 
-        return usersPage.map(user -> new UserResponse(user.getUsername(), user.getEmail(), user.getRole()));
+        return usersPage.map(user -> new UserResponse(user.getId(), user.getUsername(), user.getEmail(), user.getRole()));
     }
 
     // 사용자 삭제

@@ -9,7 +9,5 @@ public record CompanyResponse(
         String companyName,
         CompanyType companyType,
         String address,
-        UUID hubId,
-        UUID userId,
-        UUID productId
+        UUID userId
 ) {}

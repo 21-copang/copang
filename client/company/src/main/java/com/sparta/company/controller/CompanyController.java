@@ -2,8 +2,8 @@ package com.sparta.company.controller;
 
 import com.sparta.company.common.ApiResponse;
 import com.sparta.company.dto.request.CompanyCreateRequest;
-import com.sparta.company.dto.request.CompanyUpdateRequest;
 import com.sparta.company.dto.request.CompanyTypeUpdateRequest;
+import com.sparta.company.dto.request.CompanyUpdateRequest;
 import com.sparta.company.dto.response.CompanyCreateResponse;
 import com.sparta.company.dto.response.CompanyResponse;
 import com.sparta.company.service.CompanyService;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/companies")
+@RequestMapping("/api/companies")
 public class CompanyController {
 
     private final CompanyService companyService;
@@ -24,21 +24,29 @@ public class CompanyController {
 
     // 업체 등록
     @PostMapping("")
-    public ApiResponse<?> createCompany(@RequestBody CompanyCreateRequest companyCreateRequest) {
-        CompanyCreateResponse response = companyService.createCompany(companyCreateRequest);
+    public ApiResponse<?> createCompany(@RequestBody CompanyCreateRequest companyCreateRequest,
+                                        @RequestHeader("X-User-Id") UUID currentUserId,
+                                        @RequestHeader("X-User-Role") String currentUserRole) {
+        CompanyCreateResponse response = companyService.createCompany(companyCreateRequest, currentUserId, currentUserRole);
         return ApiResponse.success("OK", response, "업체 등록 성공");
     }
 
     // 업체 정보 수정
     @PutMapping("/{companyId}")
-    public ApiResponse<?> updateCompany(@PathVariable UUID companyId, @RequestBody CompanyUpdateRequest companyUpdateRequest) {
-        companyService.updateCompany(companyId, companyUpdateRequest);
+    public ApiResponse<?> updateCompany(@PathVariable UUID companyId,
+                                        @RequestBody CompanyUpdateRequest companyUpdateRequest,
+                                        @RequestHeader("X-User-Id") UUID currentUserId,
+                                        @RequestHeader("X-User-Role") String currentUserRole) {
+        companyService.updateCompany(companyId, companyUpdateRequest, currentUserId, currentUserRole);
         return ApiResponse.success("OK", companyId, "업체 정보 수정 성공");
     }
 
     // 업체 타입 변경
     @PutMapping("/type/{companyId}")
-    public ApiResponse<?> updateCompanyType(@PathVariable UUID companyId, @RequestBody CompanyTypeUpdateRequest companyTypeUpdateRequest) {
+    public ApiResponse<?> updateCompanyType(@PathVariable UUID companyId,
+                                            @RequestBody CompanyTypeUpdateRequest companyTypeUpdateRequest,
+                                            @RequestHeader("X-User-Id") UUID currentUserId,
+                                            @RequestHeader("X-User-Role") String currentUserRole) {
         companyService.updateCompanyType(companyId, companyTypeUpdateRequest);
         return ApiResponse.success("OK", companyId, "업체 타입 변경 성공");
     }

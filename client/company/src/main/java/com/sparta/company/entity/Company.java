@@ -26,19 +26,13 @@ public class Company extends BaseEntity {
 
     private String address;
 
-    private UUID hubId;
-
     private UUID userId;
 
-    private UUID productId;
-
-    public Company(String companyName, CompanyType companyType, String address, UUID hubId, UUID userId, UUID productId) {
+    public Company(String companyName, CompanyType companyType, String address, UUID userId) {
         this.companyId = UUID.randomUUID();
         this.companyName = companyName;
         this.companyType = companyType;
         this.address = address;
-        this.hubId = hubId;
         this.userId = userId;
-        this.productId = productId;
     }
 }
