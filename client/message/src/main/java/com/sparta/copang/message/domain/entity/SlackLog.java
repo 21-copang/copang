@@ -1,6 +1,7 @@
 package com.sparta.copang.message.domain.entity;
 
 import com.sparta.copang.message.application.dto.CreateSlackLogReq;
+import com.sparta.copang.message.domain.audit.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +13,7 @@ import java.util.UUID;
 @Builder(access = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "p_slack_logs")
-public class SlackLog {
+public class SlackLog extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID slackId;
