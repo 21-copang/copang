@@ -1,7 +1,7 @@
 package com.sparta.copang.order.presentation.response;
 
-import com.sparta.copang.order.presentation.response.status.CommonStatusCode;
-import com.sparta.copang.order.presentation.response.status.StatusCode;
+import com.sparta.copang.order.common.status.CommonStatusCode;
+import com.sparta.copang.order.common.status.StatusCode;
 import lombok.AccessLevel;
 import lombok.Builder;
 
