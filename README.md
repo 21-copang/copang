@@ -37,3 +37,20 @@
 
 ## ERD
 [![image](https://github.com/user-attachments/assets/9c457e07-a1fb-4c33-a4de-363989706b68)](https://www.erdcloud.com/d/YHoPKNNe22t4d23zP)
+## 트러블 슈팅
+### 스프링 부트 애플리케이션이 구동될 때 코드를 실행하는 방법
+Hub 같은 경우에는 팀원들이 어플리케이션을 테스트하기 위해 고정된 데이터가 필요했다. 이를 Spring Boot 테스트로 작성할 수도 있었지만, 어플리케이션이 실행되면 더미데이터를 집어넣는 방식으로 해결하였다.
+``` java
+@Component
+@RequiredArgsConstructor
+public class HubInitializer {
+
+    private final HubRepository hubRepository;
+
+    @EventListener(ApplicationReadyEvent.class)
+    @Transactional
+    public void init() {
+      // dummy data save code
+    }
+}
+```
