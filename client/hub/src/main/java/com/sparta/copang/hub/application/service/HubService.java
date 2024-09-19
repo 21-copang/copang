@@ -31,6 +31,7 @@ public class HubService {
         hub.setLatitude(req.latitude());
         hub.setLongitude(req.longitude());
         hub.setHub_address(req.hub_address());
+        hub.setSequence(req.sequence());
         hub.setHub_manager(req.manager_user_id());
         hubRepository.save(hub);
 

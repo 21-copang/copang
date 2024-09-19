@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalTime;
 import java.util.UUID;
 
 @Entity
@@ -22,7 +21,7 @@ public class Path {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID path_id;
 
-    private LocalTime duration;
+    private float duration;
     private float distance;
 
     @ManyToOne(fetch = FetchType.LAZY)

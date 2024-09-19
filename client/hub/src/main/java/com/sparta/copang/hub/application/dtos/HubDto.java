@@ -16,6 +16,7 @@ public final class HubDto implements Serializable {
     private final float latitude;
     private final float longitude;
     private final String hub_address;
+    private final int sequence;
     private final UUID hub_manager;
 
     public HubDto(
@@ -24,12 +25,14 @@ public final class HubDto implements Serializable {
             float latitude,
             float longitude,
             String hub_address,
+            int sequence,
             UUID hub_manager) {
         this.hub_id = hub_id;
         this.hub_name = hub_name;
         this.latitude = latitude;
         this.longitude = longitude;
         this.hub_address = hub_address;
+        this.sequence = sequence;
         this.hub_manager = hub_manager;
     }
 
@@ -64,6 +67,8 @@ public final class HubDto implements Serializable {
         return hub_address;
     }
 
+    public int sequence() { return sequence; }
+
     public UUID hub_manager() {
         return hub_manager;
     }
@@ -78,12 +83,13 @@ public final class HubDto implements Serializable {
                 Float.floatToIntBits(this.latitude) == Float.floatToIntBits(that.latitude) &&
                 Float.floatToIntBits(this.longitude) == Float.floatToIntBits(that.longitude) &&
                 Objects.equals(this.hub_address, that.hub_address) &&
-                Objects.equals(this.hub_manager, that.hub_manager);
+                Objects.equals(this.hub_manager, that.hub_manager) &&
+                Objects.equals(this.sequence, that.sequence);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(hub_id, hub_name, latitude, longitude, hub_address, hub_manager);
+        return Objects.hash(hub_id, hub_name, latitude, longitude, hub_address, sequence, hub_manager);
     }
 
     @Override
@@ -94,6 +100,7 @@ public final class HubDto implements Serializable {
                 "latitude=" + latitude + ", " +
                 "longitude=" + longitude + ", " +
                 "hub_address=" + hub_address + ", " +
+                "sequence=" + sequence + ", " +
                 "hub_manager=" + hub_manager + ']';
     }
 

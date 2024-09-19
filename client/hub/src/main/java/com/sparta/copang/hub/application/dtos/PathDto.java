@@ -3,13 +3,12 @@ package com.sparta.copang.hub.application.dtos;
 import com.sparta.copang.hub.domain.model.Path;
 import lombok.Builder;
 
-import java.time.LocalTime;
 import java.util.UUID;
 
 @Builder
 public record PathDto (
         UUID path_id,
-        LocalTime duration,
+        float duration,
         float distance,
         UUID start_hub_id,
         UUID end_hub_id

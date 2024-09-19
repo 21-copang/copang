@@ -24,10 +24,20 @@ public class Hub extends Audit {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID hub_id;
 
+    @Column(nullable = false)
     private String hub_name;
+
+    @Column(nullable = false)
     private float latitude;
+
+    @Column(nullable = false)
     private float longitude;
+
+    @Column(nullable = false)
     private String hub_address;
+
+    @Column(nullable = false)
+    private int sequence;
 
     @OneToMany(mappedBy = "startHub", cascade = CascadeType.ALL)
     private List<Path> startPaths = new ArrayList<>();
@@ -45,6 +55,7 @@ public class Hub extends Audit {
                 .latitude(req.latitude())
                 .longitude(req.longitude())
                 .hub_address(req.hub_address())
+                .sequence(req.sequence())
                 .hub_manager(req.manager_user_id())
                 .build();
     }
