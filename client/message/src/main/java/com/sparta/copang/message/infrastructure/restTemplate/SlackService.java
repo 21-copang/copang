@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.copang.message.application.dto.CreateSlackLogReq;
 import com.sparta.copang.message.common.exception.ApplicationException;
-import com.sparta.copang.message.presentation.controller.response.status.SlackStatusCode;
+import com.sparta.copang.message.common.status.SlackErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -35,10 +35,10 @@ public class SlackService {
         try {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, request, String.class);
             if (objectMapper.readTree(response.getBody()).path("ok").asText().equals("false")) {
-                throw new ApplicationException(SlackStatusCode.SEND_SLACK_MESSAGE_ERROR);
+                throw new ApplicationException(SlackErrorCode.SEND_SLACK_MESSAGE_ERROR);
             }
         } catch (RestClientException | JsonProcessingException e) {
-            throw new ApplicationException(SlackStatusCode.SEND_SLACK_MESSAGE_ERROR);
+            throw new ApplicationException(SlackErrorCode.SEND_SLACK_MESSAGE_ERROR);
         }
     }
 
@@ -50,11 +50,11 @@ public class SlackService {
         try {
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
             if (objectMapper.readTree(response.getBody()).path("ok").asText().equals("false")) {
-                throw new ApplicationException(SlackStatusCode.GET_USERID_ERROR);
+                throw new ApplicationException(SlackErrorCode.GET_USERID_ERROR);
             }
             return objectMapper.readTree(response.getBody()).path("user").path("id").asText();
         } catch (RestClientException | JsonProcessingException e) {
-            throw new ApplicationException(SlackStatusCode.GET_USERID_ERROR);
+            throw new ApplicationException(SlackErrorCode.GET_USERID_ERROR);
         }
     }
 

@@ -1,10 +1,9 @@
 package com.sparta.copang.message.presentation.controller.response;
 
-import com.sparta.copang.message.presentation.controller.response.status.CommonStatusCode;
-import com.sparta.copang.message.presentation.controller.response.status.StatusCode;
+import com.sparta.copang.message.common.status.CommonStatusCode;
+import com.sparta.copang.message.common.status.StatusCode;
 import lombok.AccessLevel;
 import lombok.Builder;
-import lombok.Getter;
 
 @Builder(access = AccessLevel.PRIVATE)
 public record Result (Integer resultCode, String resultMessage) {
