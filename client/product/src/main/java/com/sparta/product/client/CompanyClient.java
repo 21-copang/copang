@@ -10,6 +10,6 @@ import java.util.UUID;
 public interface CompanyClient {
 
     @GetMapping("/api/companies/{companyId}")
-    UUID getCompanyByCompanyId(@PathVariable UUID companyId);
+    CompanyResponse getCompanyByCompanyId(@PathVariable UUID companyId);
 
 }

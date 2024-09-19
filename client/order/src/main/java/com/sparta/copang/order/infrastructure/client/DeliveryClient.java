@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.UUID;
 
-@FeignClient(name = "delivery-service-route", configuration = FeignConfig.class)
+@FeignClient(name = "DELIVERY-SERVICE", configuration = FeignConfig.class)
 public interface DeliveryClient {
 
     @PostMapping("/api/deliveries")

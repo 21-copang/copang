@@ -2,13 +2,13 @@ package com.sparta.product.service;
 
 import com.sparta.product.client.CompanyClient;
 import com.sparta.product.client.HubClient;
-import com.sparta.product.client.OrderClient;
 import com.sparta.product.dto.request.ProductCreateRequest;
 import com.sparta.product.dto.request.ProductUpdateRequest;
 import com.sparta.product.dto.response.ProductResponse;
 import com.sparta.product.entity.Product;
 import com.sparta.product.entity.ProductRepository;
 import com.sparta.product.common.ApiResponse;
+import com.sparta.product.client.CompanyResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -31,23 +31,25 @@ public class ProductService {
     // 상품 등록
     public ApiResponse<ProductResponse> createProduct(ProductCreateRequest request) {
 
+        // 회사 정보 요청
+        CompanyResponse companyResponse = companyClient.getCompanyByCompanyId(request.companyId());
+
+        // 허브 ID를 수동으로 설정 (더미 허브 ID 사용)
+        UUID hubId = hubClient.getHubByHubId(request.hubId());
+
         Product product = new Product(
                 request.productName(),
-                request.companyId(),
-                request.hubId()
+                companyResponse.getCompanyId(),
+                hubId
         );
         productRepository.save(product);
-
-        UUID companyId = companyClient.getCompanyByCompanyId(product.getCompanyId());
-        UUID hubId = hubClient.getHubByHubId(product.getHubId());
 
         return ApiResponse.success("OK", new ProductResponse(
                         product.getProductId(),
                         product.getProductName(),
-                        companyId,
+                        companyResponse.getCompanyId(),
                         hubId),
                 "상품 등록 성공");
-
     }
 
     // 상품 수정
@@ -67,16 +69,18 @@ public class ProductService {
         }
         productRepository.save(product);
 
-        UUID companyId = companyClient.getCompanyByCompanyId(product.getCompanyId());
+        // 회사 정보 요청
+        CompanyResponse companyResponse = companyClient.getCompanyByCompanyId(product.getCompanyId());
+
+        // 허브 정보 요청
         UUID hubId = hubClient.getHubByHubId(product.getHubId());
 
         return ApiResponse.success("OK", new ProductResponse(
                         product.getProductId(),
                         product.getProductName(),
-                        companyId,
+                        companyResponse.getCompanyId(),
                         hubId),
                 "상품 수정 성공");
-
     }
 
     // 상품 상세 조회
@@ -85,15 +89,17 @@ public class ProductService {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상품입니다."));
 
-        UUID companyId = companyClient.getCompanyByCompanyId(product.getCompanyId());
+        // 회사 정보 요청
+        CompanyResponse companyResponse = companyClient.getCompanyByCompanyId(product.getCompanyId());
+
+        // 허브 정보 요청
         UUID hubId = hubClient.getHubByHubId(product.getHubId());
 
         return ApiResponse.success("OK", new ProductResponse(
                 product.getProductId(),
                 product.getProductName(),
-                companyId,
+                companyResponse.getCompanyId(),
                 hubId), "상품 조회 성공");
-
     }
 
     // 모든 상품 조회
@@ -102,18 +108,20 @@ public class ProductService {
         Page<Product> products = productRepository.findAll(pageable);
         Page<ProductResponse> responsePage = products.map(product -> {
 
-            UUID companyId = companyClient.getCompanyByCompanyId(product.getCompanyId());
+            // 회사 정보 요청
+            CompanyResponse companyResponse = companyClient.getCompanyByCompanyId(product.getCompanyId());
+
+            // 허브 정보 요청
             UUID hubId = hubClient.getHubByHubId(product.getHubId());
 
             return new ProductResponse(
                     product.getProductId(),
                     product.getProductName(),
-                    companyId,
+                    companyResponse.getCompanyId(),
                     hubId);
         });
 
         return ApiResponse.success("OK", responsePage, "모든 상품 조회 성공");
-
     }
 
     // 상품 검색
@@ -122,18 +130,20 @@ public class ProductService {
         Page<Product> products = productRepository.findByProductNameContaining(productName, pageable);
         Page<ProductResponse> responsePage = products.map(product -> {
 
-            UUID companyId = companyClient.getCompanyByCompanyId(product.getCompanyId());
+            // 회사 정보 요청
+            CompanyResponse companyResponse = companyClient.getCompanyByCompanyId(product.getCompanyId());
+
+            // 허브 정보 요청
             UUID hubId = hubClient.getHubByHubId(product.getHubId());
 
             return new ProductResponse(
                     product.getProductId(),
                     product.getProductName(),
-                    companyId,
+                    companyResponse.getCompanyId(),
                     hubId);
         });
 
         return ApiResponse.success("OK", responsePage, "상품 검색 성공");
-
     }
 
     // 상품 삭제
@@ -144,6 +154,5 @@ public class ProductService {
         productRepository.delete(product);
 
         return ApiResponse.success("OK", "상품 삭제 성공", "상품 삭제 성공");
-
     }
 }
