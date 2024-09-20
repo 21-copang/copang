@@ -8,6 +8,5 @@ public record CompanyResponse(
         CompanyType companyType,
         String address,
         UUID hubId,
-        UUID userId,
-        UUID productId
+        UUID userId
 ) {}

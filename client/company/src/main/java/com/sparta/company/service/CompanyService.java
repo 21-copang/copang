@@ -55,7 +55,8 @@ public class CompanyService {
                 request.companyName(),
                 request.companyType(),
                 request.address(),
-                userId
+                userId,
+                request.hubId()
         );
 
         // Company 저장
@@ -127,7 +128,8 @@ public class CompanyService {
                 company.getCompanyName(),
                 company.getCompanyType(),
                 company.getAddress(),
-                company.getUserId()
+                company.getUserId(),
+                company.getHubId()
         );
     }
 
@@ -139,7 +141,8 @@ public class CompanyService {
                 company.getCompanyName(),
                 company.getCompanyType(),
                 company.getAddress(),
-                company.getUserId()
+                company.getUserId(),
+                company.getHubId()
         ));
     }
 
@@ -151,7 +154,8 @@ public class CompanyService {
                 company.getCompanyName(),
                 company.getCompanyType(),
                 company.getAddress(),
-                company.getUserId()
+                company.getUserId(),
+                company.getHubId()
         ));
     }
 

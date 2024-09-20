@@ -97,7 +97,7 @@ public class OrderService {
     public UUID getHubId(UUID companyId){
         try {
             ApiResponse<CompanyResponse> response = companyClient.getCompany(companyId);
-            return response.data().companyId();
+            return response.data().hubId();
         } catch (Exception e) {
             throw new ApplicationException(OrderErrorCode.GET_COMPANY_ERROR);
         }

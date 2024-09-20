@@ -32,14 +32,14 @@ public class ProductService {
     public ApiResponse<ProductResponse> createProduct(ProductCreateRequest request) {
 
         // 회사 정보 요청
-        CompanyResponse companyResponse = companyClient.getCompanyByCompanyId(request.companyId());
+        ApiResponse<CompanyResponse> companyResponse = companyClient.getCompanyByCompanyId(request.companyId());
 
         // 허브 ID를 수동으로 설정 (더미 허브 ID 사용)
         UUID hubId = hubClient.getHubByHubId(request.hubId());
 
         Product product = new Product(
                 request.productName(),
-                companyResponse.getCompanyId(),
+                companyResponse.getData().getCompanyId(),
                 hubId
         );
         productRepository.save(product);
@@ -47,7 +47,7 @@ public class ProductService {
         return ApiResponse.success("OK", new ProductResponse(
                         product.getProductId(),
                         product.getProductName(),
-                        companyResponse.getCompanyId(),
+                        companyResponse.getData().getCompanyId(),
                         hubId),
                 "상품 등록 성공");
     }
@@ -70,7 +70,7 @@ public class ProductService {
         productRepository.save(product);
 
         // 회사 정보 요청
-        CompanyResponse companyResponse = companyClient.getCompanyByCompanyId(product.getCompanyId());
+        ApiResponse<CompanyResponse> companyResponse = companyClient.getCompanyByCompanyId(request.companyId());
 
         // 허브 정보 요청
         UUID hubId = hubClient.getHubByHubId(product.getHubId());
@@ -78,7 +78,7 @@ public class ProductService {
         return ApiResponse.success("OK", new ProductResponse(
                         product.getProductId(),
                         product.getProductName(),
-                        companyResponse.getCompanyId(),
+                        companyResponse.getData().getCompanyId(),
                         hubId),
                 "상품 수정 성공");
     }
@@ -90,7 +90,7 @@ public class ProductService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상품입니다."));
 
         // 회사 정보 요청
-        CompanyResponse companyResponse = companyClient.getCompanyByCompanyId(product.getCompanyId());
+        ApiResponse<CompanyResponse> companyResponse = companyClient.getCompanyByCompanyId(product.getCompanyId());
 
         // 허브 정보 요청
         UUID hubId = hubClient.getHubByHubId(product.getHubId());
@@ -98,7 +98,7 @@ public class ProductService {
         return ApiResponse.success("OK", new ProductResponse(
                 product.getProductId(),
                 product.getProductName(),
-                companyResponse.getCompanyId(),
+                companyResponse.getData().getCompanyId(),
                 hubId), "상품 조회 성공");
     }
 
@@ -109,7 +109,7 @@ public class ProductService {
         Page<ProductResponse> responsePage = products.map(product -> {
 
             // 회사 정보 요청
-            CompanyResponse companyResponse = companyClient.getCompanyByCompanyId(product.getCompanyId());
+            ApiResponse<CompanyResponse> companyResponse = companyClient.getCompanyByCompanyId(product.getCompanyId());
 
             // 허브 정보 요청
             UUID hubId = hubClient.getHubByHubId(product.getHubId());
@@ -117,7 +117,7 @@ public class ProductService {
             return new ProductResponse(
                     product.getProductId(),
                     product.getProductName(),
-                    companyResponse.getCompanyId(),
+                    companyResponse.getData().getCompanyId(),
                     hubId);
         });
 
@@ -131,7 +131,7 @@ public class ProductService {
         Page<ProductResponse> responsePage = products.map(product -> {
 
             // 회사 정보 요청
-            CompanyResponse companyResponse = companyClient.getCompanyByCompanyId(product.getCompanyId());
+            ApiResponse<CompanyResponse> companyResponse = companyClient.getCompanyByCompanyId(product.getCompanyId());
 
             // 허브 정보 요청
             UUID hubId = hubClient.getHubByHubId(product.getHubId());
@@ -139,7 +139,7 @@ public class ProductService {
             return new ProductResponse(
                     product.getProductId(),
                     product.getProductName(),
-                    companyResponse.getCompanyId(),
+                    companyResponse.getData().getCompanyId(),
                     hubId);
         });
 

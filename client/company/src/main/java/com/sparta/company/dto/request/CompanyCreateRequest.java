@@ -8,5 +8,6 @@ public record CompanyCreateRequest(
         String companyName,
         CompanyType companyType,
         String address,
-        UUID userId
+        UUID userId,
+        UUID hubId
 ) {}
