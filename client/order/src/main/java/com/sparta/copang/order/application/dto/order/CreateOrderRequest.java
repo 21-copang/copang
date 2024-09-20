@@ -13,9 +13,6 @@ public record CreateOrderRequest(
         @NotNull(message = "ReceiveCompanyId is null")
         UUID receiveCompanyId,
 
-        @NotNull(message = "HubId is null")
-        UUID hubId,
-
         @NotBlank(message = "Receiver cannot be blank")
         String receiver,
 

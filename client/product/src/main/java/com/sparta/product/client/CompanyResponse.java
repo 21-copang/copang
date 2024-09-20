@@ -11,5 +11,6 @@ public class CompanyResponse {
     private String companyType;
     private String address;
     private UUID userId;
+    private UUID hubId;
 }
 
