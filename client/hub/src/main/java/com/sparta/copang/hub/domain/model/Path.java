@@ -4,14 +4,14 @@ import com.sparta.copang.hub.presentation.dtos.PathReq;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
 @Entity
 @Builder
-@Data
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "p_hub_paths")

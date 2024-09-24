@@ -12,10 +12,14 @@ public interface HubRepository {
 
     Optional<Hub> findById(UUID id);
 
+    Long countBy();
+
     @Query("SELECT h " +
     "FROM Hub h " +
     "WHERE h.hub_name LIKE %:query%")
     List<Hub> searchHub(@Param("query") String query);
+
+    Optional<Hub> findBySequence(int sequence);
 
     Hub save(Hub hub);
 

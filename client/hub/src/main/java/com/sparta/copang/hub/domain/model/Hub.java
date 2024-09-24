@@ -1,5 +1,7 @@
 package com.sparta.copang.hub.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sparta.copang.hub.common.Entity.Audit;
 import com.sparta.copang.hub.presentation.dtos.HubReq;
 import jakarta.persistence.*;
@@ -13,10 +15,12 @@ import java.util.UUID;
 @Where(clause = "deleted_at is null")
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class)
 @Table(name = "p_hubs")
 public class Hub extends Audit {
 
